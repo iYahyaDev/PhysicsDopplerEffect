@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 120" role="img" aria-labelledby="title">
+  <title id="title">Galaxy</title>
+  <rect width="150" height="120" rx="16" fill="#081421"/>
+  <ellipse cx="75" cy="60" rx="54" ry="19" fill="none" stroke="#caa7ff" stroke-width="9" transform="rotate(-18 75 60)"/>
+  <ellipse cx="75" cy="60" rx="42" ry="13" fill="none" stroke="#5ce1ff" stroke-width="7" transform="rotate(14 75 60)"/>
+  <circle cx="75" cy="60" r="13" fill="#fff4bc"/>
+  <circle cx="28" cy="25" r="2.5" fill="#d8f4ff"/>
+  <circle cx="121" cy="27" r="2" fill="#d8f4ff"/>
+  <circle cx="33" cy="95" r="2" fill="#d8f4ff"/>
+  <circle cx="118" cy="91" r="3" fill="#d8f4ff"/>
+</svg>

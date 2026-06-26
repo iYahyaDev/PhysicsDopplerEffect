@@ -1,0 +1,42 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.37216.2 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "PhysicsDopplerEffect", "PhysicsDopplerEffect\", "{2E3B51F6-CE5F-D66B-54FD-C980583E3EB7}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.7.2"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_50347"
+		Debug.AspNetCompiler.PhysicalPath = "PhysicsDopplerEffect\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50347\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_50347"
+		Release.AspNetCompiler.PhysicalPath = "PhysicsDopplerEffect\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50347\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "50347"
+		SlnRelativePath = "PhysicsDopplerEffect\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2E3B51F6-CE5F-D66B-54FD-C980583E3EB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E3B51F6-CE5F-D66B-54FD-C980583E3EB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A4E9B632-C8EE-48AF-B792-EE7D5DA059C7}
+	EndGlobalSection
+EndGlobal

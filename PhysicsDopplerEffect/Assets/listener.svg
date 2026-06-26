@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="title">
+  <title id="title">Listener</title>
+  <circle cx="60" cy="36" r="22" fill="#f3d2b8" stroke="#112238" stroke-width="5"/>
+  <path d="M29 111c3-29 17-45 31-45s28 16 31 45z" fill="#5ce1ff" stroke="#112238" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M43 32c4-17 28-18 36-4 2-13-8-24-25-24-15 0-25 10-25 25z" fill="#17283b"/>
+  <path d="M82 39c12 3 18 12 18 23M83 55c6 2 9 6 10 12" fill="none" stroke="#ffcf70" stroke-width="5" stroke-linecap="round"/>
+</svg>

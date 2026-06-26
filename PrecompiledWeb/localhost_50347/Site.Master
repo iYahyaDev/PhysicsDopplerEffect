@@ -1,0 +1,46 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="DopplerLab.SiteMaster" %>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#07111f" />
+    <link rel="icon" href="data:," />
+    <title>Doppler Lab</title>
+    <link rel="stylesheet" href="Content/site.css" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <a class="skip-link" href="#mainContent" data-text-ar="تجاوز إلى المحتوى" data-text-en="Skip to content">تجاوز إلى المحتوى</a>
+        <header class="site-header">
+            <div class="brand">
+                <span class="brand-mark" aria-hidden="true">D</span>
+                <a href="Default.aspx" class="brand-title" aria-label="Doppler Lab">Doppler Lab</a>
+            </div>
+            <nav class="site-nav" aria-label="التنقل الرئيسي" data-aria-label-ar="التنقل الرئيسي" data-aria-label-en="Primary navigation">
+                <a href="Default.aspx" data-i18n="navHome">الرئيسية</a>
+                <a href="Lab.aspx" data-i18n="navLab">المختبر</a>
+                <a href="Applications.aspx" data-i18n="navApplications">تطبيقات</a>
+                <a href="Compare.aspx" data-i18n="navCompare">الصوت والضوء</a>
+                <a href="Quiz.aspx" data-i18n="navQuiz">اختبار</a>
+                <a href="Presenter.aspx" data-i18n="navPresenter">العرض</a>
+            </nav>
+            <div class="header-actions">
+                <button type="button" class="ghost-button" id="resetStorageBtn" data-text-ar="مسح الحفظ" data-text-en="Reset saved">مسح الحفظ</button>
+                <button type="button" class="secondary-button" id="languageToggle" data-i18n="languageName">English</button>
+            </div>
+        </header>
+        <main id="mainContent" class="page-main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        </main>
+        <footer class="site-footer">
+            <span data-text-ar="مختبر دوبلر يعمل محليا بدون إنترنت." data-text-en="Doppler Lab runs locally without the internet.">مختبر دوبلر يعمل محليا بدون إنترنت.</span>
+            <a href="PhysicsValidation.aspx" data-i18n="navValidation">اختبار الفيزياء</a>
+        </footer>
+        <div id="toastRegion" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+    </form>
+    <script src="Scripts/localization.js"></script>
+    <asp:ContentPlaceHolder ID="ScriptContent" runat="server" />
+</body>
+</html>
