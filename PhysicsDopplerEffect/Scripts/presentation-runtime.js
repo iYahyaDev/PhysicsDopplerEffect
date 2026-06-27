@@ -21,6 +21,8 @@
         overviewBtn: document.getElementById("runtimeOverview"),
         reset: document.getElementById("runtimeReset"),
         fullscreen: document.getElementById("runtimeFullscreen"),
+        more: document.getElementById("runtimeMore"),
+        secondary: document.getElementById("runtimeSecondaryControls"),
         language: document.getElementById("runtimeLanguage"),
         hide: document.getElementById("runtimeHideControls"),
         slideNumber: document.getElementById("runtimeSlideNumber"),
@@ -87,12 +89,14 @@
         }
         els.overview.hidden = true;
         els.stage.hidden = false;
+        els.stage.scrollTop = 0;
         mounted = PresentationComponents.renderSlide(els.stage, presentation, slides[current], {
             language: language,
             revealStep: revealStep,
             onAction: handleSlideAction
         });
         els.stage.focus({ preventScroll: true });
+        setMoreOpen(false);
         scheduleResize();
         updateCounters();
     }
@@ -186,6 +190,7 @@
         if (!presentation) {
             return;
         }
+        setMoreOpen(false);
         if (mounted) {
             mounted.dispose();
             mounted = null;
@@ -237,7 +242,23 @@
         els.app.classList.toggle("controls-hidden", !!hidden);
         els.controls.hidden = false;
         els.showControls.hidden = !hidden;
+        if (hidden) {
+            setMoreOpen(false);
+        }
         scheduleResize();
+    }
+
+    function setMoreOpen(open) {
+        if (!els.more || !els.secondary) {
+            return;
+        }
+        els.app.classList.toggle("more-open", !!open);
+        els.more.setAttribute("aria-expanded", open ? "true" : "false");
+        scheduleResize();
+    }
+
+    function toggleMore() {
+        setMoreOpen(!els.app.classList.contains("more-open"));
     }
 
     function scheduleResize() {
@@ -264,12 +285,23 @@
         return tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || target.isContentEditable;
     }
 
+    function isInteractiveTouch(target) {
+        return !!(target && target.closest && target.closest("button, a, input, textarea, select, label, .presentation-controls, .presentation-overview, .interactive-shell, .component-controls, .question-card, canvas"));
+    }
+
     function bind() {
         els.prev.addEventListener("click", prev);
         els.next.addEventListener("click", next);
         els.overviewBtn.addEventListener("click", showOverview);
         els.reset.addEventListener("click", reset);
-        els.fullscreen.addEventListener("click", toggleFullscreen);
+        if (els.more) {
+            els.more.addEventListener("click", toggleMore);
+        }
+        if (document.documentElement.requestFullscreen || document.exitFullscreen) {
+            els.fullscreen.addEventListener("click", toggleFullscreen);
+        } else {
+            els.fullscreen.hidden = true;
+        }
         els.hide.addEventListener("click", hideControls);
         els.showControls.addEventListener("click", showControls);
         els.language.addEventListener("click", function () {
@@ -295,6 +327,7 @@
                 showOverview();
             } else if (event.key === "Escape") {
                 showControls();
+                setMoreOpen(false);
                 if (!els.overview.hidden) {
                     renderCurrent();
                 }
@@ -305,6 +338,7 @@
         });
         document.addEventListener("fullscreenchange", scheduleResize);
         window.addEventListener("resize", scheduleResize);
+        window.addEventListener("orientationchange", scheduleResize);
         document.addEventListener("mousemove", function (event) {
             if (els.app.classList.contains("controls-hidden") && event.clientY >= window.innerHeight - 10) {
                 els.showControls.focus({ preventScroll: true });
@@ -312,15 +346,24 @@
         });
         var touchStart = null;
         document.addEventListener("touchstart", function (event) {
-            touchStart = event.touches.length ? event.touches[0].clientX : null;
+            if (!event.touches.length || isInteractiveTouch(event.target)) {
+                touchStart = null;
+                return;
+            }
+            touchStart = {
+                x: event.touches[0].clientX,
+                y: event.touches[0].clientY
+            };
         }, { passive: true });
         document.addEventListener("touchend", function (event) {
             if (touchStart === null || !event.changedTouches.length) {
                 return;
             }
-            var dx = event.changedTouches[0].clientX - touchStart;
-            if (Math.abs(dx) > 60) {
-                dx < 0 ? next() : prev();
+            var dx = event.changedTouches[0].clientX - touchStart.x;
+            var dy = event.changedTouches[0].clientY - touchStart.y;
+            if (Math.abs(dx) > 70 && Math.abs(dx) > Math.abs(dy) * 1.35) {
+                var forward = language === "ar" ? dx > 0 : dx < 0;
+                forward ? next() : prev();
             }
             touchStart = null;
         }, { passive: true });

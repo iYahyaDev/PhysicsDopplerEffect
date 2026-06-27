@@ -111,7 +111,7 @@
 
     function resizeCanvas(canvas) {
         var rect = canvas.getBoundingClientRect();
-        var ratio = window.devicePixelRatio || 1;
+        var ratio = Math.min(window.devicePixelRatio || 1, 2);
         var width = Math.max(320, Math.floor(rect.width * ratio));
         var height = Math.max(180, Math.floor(rect.height * ratio));
         if (canvas.width !== width || canvas.height !== height) {

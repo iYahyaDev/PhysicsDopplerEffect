@@ -11,18 +11,21 @@
 </head>
 <body class="presentation-player-page">
     <form id="form1" runat="server">
-        <div id="presentationApp" class="presentation-app" aria-live="polite">
+        <div id="presentationApp" class="presentation-app presentation-player" aria-live="polite">
             <div id="presentationStage" class="presentation-stage" tabindex="-1"></div>
             <div id="presentationOverview" class="presentation-overview" hidden></div>
             <div id="runtimeStepDots" class="presentation-step-dots" aria-hidden="true"></div>
             <div class="presentation-controls" id="presentationControls">
                 <button type="button" id="runtimePrev" class="presentation-icon" aria-label="Previous slide">‹</button>
                 <button type="button" id="runtimeNext" class="presentation-control" data-label-ar="الخطوة التالية" data-label-en="Next step">الخطوة التالية</button>
-                <button type="button" id="runtimeOverview" class="presentation-control" data-label-ar="نظرة عامة" data-label-en="Overview">نظرة عامة</button>
-                <button type="button" id="runtimeReset" class="presentation-control" data-label-ar="إعادة" data-label-en="Reset">إعادة</button>
                 <button type="button" id="runtimeFullscreen" class="presentation-control" data-label-ar="ملء الشاشة" data-label-en="Fullscreen">ملء الشاشة</button>
-                <button type="button" id="runtimeLanguage" class="presentation-control">English</button>
-                <button type="button" id="runtimeHideControls" class="presentation-control" data-label-ar="إخفاء" data-label-en="Hide">إخفاء</button>
+                <button type="button" id="runtimeMore" class="presentation-control presentation-more-toggle" aria-expanded="false" aria-controls="runtimeSecondaryControls" data-label-ar="المزيد" data-label-en="More">المزيد</button>
+                <div id="runtimeSecondaryControls" class="presentation-secondary-controls">
+                    <button type="button" id="runtimeOverview" class="presentation-control" data-label-ar="نظرة عامة" data-label-en="Overview">نظرة عامة</button>
+                    <button type="button" id="runtimeReset" class="presentation-control" data-label-ar="إعادة" data-label-en="Reset">إعادة</button>
+                    <button type="button" id="runtimeLanguage" class="presentation-control">English</button>
+                    <button type="button" id="runtimeHideControls" class="presentation-control" data-label-ar="إخفاء" data-label-en="Hide">إخفاء</button>
+                </div>
                 <div class="presentation-counter"><span id="runtimeSlideNumber">1</span> / <span id="runtimeSlideTotal">1</span></div>
             </div>
             <button type="button" id="runtimeShowControls" class="presentation-show-controls" hidden data-label-ar="إظهار التحكم" data-label-en="Show controls">إظهار التحكم</button>

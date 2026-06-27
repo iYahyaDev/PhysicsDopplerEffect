@@ -939,6 +939,425 @@ body.presentation-player-page {
     }
 }
 
+body.presentation-player-page,
+body.presentation-player-page form {
+    width: 100%;
+    min-width: 0;
+    overscroll-behavior: none;
+    touch-action: manipulation;
+}
+
+body.presentation-player-page .presentation-player {
+    --player-edge: clamp(10px, 2.4vw, 22px);
+    --player-toolbar-height: clamp(76px, 10dvh, 112px);
+    --player-safe-bottom: max(8px, env(safe-area-inset-bottom));
+    --player-text-xs: clamp(12px, 1.4dvw, 16px);
+    --player-text-sm: clamp(14px, 1.8dvw, 19px);
+    --player-text-md: clamp(16px, 2.2dvw, 24px);
+    --player-title: clamp(28px, 5.6dvw, 70px);
+    min-width: 0;
+    overflow: hidden;
+}
+
+body.presentation-player-page .presentation-player *,
+body.presentation-player-page .presentation-player *::before,
+body.presentation-player-page .presentation-player *::after {
+    min-width: 0;
+}
+
+body.presentation-player-page .presentation-stage {
+    max-width: min(100vw, 1600px);
+    max-height: min(calc(100dvh - var(--presentation-control-safe)), 900px);
+}
+
+body.presentation-player-page .presentation-scene {
+    overscroll-behavior: contain;
+}
+
+body.presentation-player-page .slide-block,
+body.presentation-player-page .slide-callout,
+body.presentation-player-page .component-card,
+body.presentation-player-page .question-card,
+body.presentation-player-page .presentation-table,
+body.presentation-player-page .component-readout {
+    overflow-wrap: anywhere;
+}
+
+body.presentation-player-page .slide-image {
+    max-width: 100%;
+    object-fit: contain;
+}
+
+body.presentation-player-page .presentation-controls {
+    max-width: min(1180px, calc(100vw - (var(--player-edge) * 2)));
+    margin-inline: auto;
+    padding: 8px;
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 8px;
+    background: rgba(5,14,24,.82);
+    box-shadow: 0 14px 42px rgba(0,0,0,.28);
+    backdrop-filter: blur(14px);
+    flex-wrap: wrap;
+}
+
+body.presentation-player-page .presentation-secondary-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+body.presentation-player-page .presentation-more-toggle {
+    display: none;
+}
+
+body.presentation-player-page .presentation-control,
+body.presentation-player-page .presentation-icon,
+body.presentation-player-page .presentation-show-controls {
+    min-width: 44px;
+    min-height: 44px;
+    white-space: nowrap;
+}
+
+body.presentation-player-page .presentation-counter {
+    min-width: 58px;
+    white-space: nowrap;
+}
+
+body.presentation-player-page .presentation-show-controls {
+    bottom: max(8px, env(safe-area-inset-bottom));
+    padding: 8px 14px;
+}
+
+body.presentation-player-page .presentation-app.controls-hidden .presentation-stage {
+    max-height: 100dvh;
+}
+
+@media (max-width: 760px), (max-height: 520px) {
+    body.presentation-player-page .presentation-player {
+        --presentation-control-safe: calc(var(--player-toolbar-height) + var(--player-safe-bottom) + 8px);
+        --player-edge: max(8px, env(safe-area-inset-left), env(safe-area-inset-right));
+        align-items: stretch;
+        justify-items: stretch;
+        place-items: stretch;
+    }
+
+    body.presentation-player-page .presentation-stage {
+        width: 100vw;
+        height: calc(100dvh - var(--presentation-control-safe));
+        max-width: none;
+        max-height: none;
+        aspect-ratio: auto;
+        border-radius: 0;
+    }
+
+    body.presentation-player-page .presentation-app.controls-hidden {
+        --presentation-control-safe: 0px;
+    }
+
+    body.presentation-player-page .presentation-scene {
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+        align-content: start;
+        padding: clamp(14px, 4dvw, 28px);
+        gap: clamp(10px, 2.8dvw, 16px);
+        overflow-x: hidden;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    body.presentation-player-page .width-full,
+    body.presentation-player-page .width-half,
+    body.presentation-player-page .width-third {
+        grid-column: 1 / -1;
+        justify-self: stretch;
+        width: 100%;
+    }
+
+    body.presentation-player-page .align-center,
+    body.presentation-player-page .align-end {
+        justify-self: stretch;
+    }
+
+    body.presentation-player-page .scene-section {
+        font-size: var(--player-text-xs);
+    }
+
+    body.presentation-player-page .slide-block h1,
+    body.presentation-player-page .template-title .emphasis-hero h1 {
+        font-size: var(--player-title);
+        line-height: 1.08;
+    }
+
+    body.presentation-player-page .slide-block h2,
+    body.presentation-player-page .template-full-screen-simulation .slide-block h2,
+    body.presentation-player-page .template-summary .slide-block h2,
+    body.presentation-player-page .template-conclusion .slide-block h2 {
+        font-size: clamp(22px, 5.2dvw, 38px);
+        line-height: 1.12;
+    }
+
+    body.presentation-player-page .slide-block p,
+    body.presentation-player-page .slide-block li,
+    body.presentation-player-page .slide-callout,
+    body.presentation-player-page .emphasis-lead,
+    body.presentation-player-page .emphasis-lead p,
+    body.presentation-player-page .template-title .slide-block p,
+    body.presentation-player-page .template-title .slide-callout,
+    body.presentation-player-page .template-title-with-text .slide-callout,
+    body.presentation-player-page .template-full-screen-simulation .emphasis-lead,
+    body.presentation-player-page .template-full-screen-simulation .emphasis-lead p {
+        font-size: var(--player-text-md);
+        line-height: 1.32;
+    }
+
+    body.presentation-player-page .slide-callout,
+    body.presentation-player-page .component-card,
+    body.presentation-player-page .presentation-table,
+    body.presentation-player-page .missing-media {
+        padding: clamp(10px, 3dvw, 16px);
+    }
+
+    body.presentation-player-page .slide-image,
+    body.presentation-player-page .template-title .slide-image {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: min(34dvh, 320px);
+    }
+
+    body.presentation-player-page .presentation-table {
+        display: block;
+        overflow-x: auto;
+        white-space: normal;
+        font-size: var(--player-text-sm);
+    }
+
+    body.presentation-player-page .interactive-shell {
+        width: 100%;
+        gap: clamp(8px, 2dvw, 12px);
+    }
+
+    body.presentation-player-page .component-topline {
+        gap: 8px;
+        align-items: flex-start;
+    }
+
+    body.presentation-player-page .component-topline h3 {
+        font-size: clamp(18px, 4.6dvw, 28px);
+    }
+
+    body.presentation-player-page .component-controls,
+    body.presentation-player-page .width-half .component-controls,
+    body.presentation-player-page .width-third .component-controls {
+        max-height: none;
+        overflow: visible;
+        gap: 8px;
+        justify-content: stretch;
+    }
+
+    body.presentation-player-page .component-controls input[type="range"] {
+        flex: 1 1 100%;
+        width: 100%;
+        min-width: 0;
+    }
+
+    body.presentation-player-page .component-button,
+    body.presentation-player-page .choice-button {
+        min-height: 44px;
+        white-space: normal;
+        line-height: 1.2;
+    }
+
+    body.presentation-player-page .choice-row,
+    body.presentation-player-page .question-card .choice-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    body.presentation-player-page .choice-button,
+    body.presentation-player-page .question-card .choice-button {
+        flex: 1 1 auto;
+        width: 100%;
+    }
+
+    body.presentation-player-page .question-card {
+        max-height: none;
+        width: 100%;
+    }
+
+    body.presentation-player-page .component-canvas,
+    body.presentation-player-page .template-full-screen-simulation .component-canvas,
+    body.presentation-player-page .enhanced-canvas,
+    body.presentation-player-page .template-full-screen-simulation .enhanced-canvas,
+    body.presentation-player-page .width-half .enhanced-canvas,
+    body.presentation-player-page .width-third .enhanced-canvas {
+        height: clamp(210px, 42dvh, 520px);
+    }
+
+    body.presentation-player-page .component-readout,
+    body.presentation-player-page .width-half .component-readout,
+    body.presentation-player-page .width-third .component-readout {
+        max-height: 22dvh;
+        overflow-y: auto;
+        justify-content: stretch;
+        font-size: clamp(11px, 3dvw, 14px);
+    }
+
+    body.presentation-player-page .opening-question-block > .compact-question,
+    body.presentation-player-page .opening-question-block > .simulation-overlay-actions {
+        position: static;
+        max-height: none;
+    }
+
+    body.presentation-player-page .presentation-controls {
+        inset-inline: var(--player-edge);
+        bottom: calc(var(--player-safe-bottom) + 4px);
+        max-width: none;
+        min-height: 56px;
+        padding: 6px;
+        gap: 6px;
+        flex-wrap: nowrap;
+        justify-content: center;
+        overflow: visible;
+    }
+
+    body.presentation-player-page .presentation-icon {
+        width: 44px;
+        padding: 0;
+        flex: 0 0 44px;
+    }
+
+    body.presentation-player-page #runtimeNext {
+        flex: 1 1 94px;
+        padding-inline: 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    body.presentation-player-page #runtimeFullscreen {
+        width: 44px;
+        flex: 0 0 44px;
+        padding: 0;
+        font-size: 0;
+    }
+
+    body.presentation-player-page #runtimeFullscreen::before {
+        content: "\26F6";
+        font-size: 20px;
+        line-height: 1;
+    }
+
+    body.presentation-player-page .presentation-more-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+        padding-inline: 10px;
+    }
+
+    body.presentation-player-page .presentation-counter {
+        flex: 0 0 auto;
+        min-width: 44px;
+        font-size: 12px;
+    }
+
+    body.presentation-player-page .presentation-secondary-controls {
+        position: absolute;
+        inset-inline: 0;
+        bottom: calc(100% + 8px);
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        padding: 10px;
+        border: 1px solid rgba(255,255,255,.14);
+        border-radius: 8px;
+        background: rgba(5,14,24,.96);
+        box-shadow: 0 18px 44px rgba(0,0,0,.34);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(8px);
+        transition: opacity .16s ease, transform .16s ease, visibility .16s ease;
+    }
+
+    body.presentation-player-page .presentation-player.more-open .presentation-secondary-controls {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    body.presentation-player-page .presentation-secondary-controls .presentation-control {
+        width: 100%;
+        white-space: normal;
+        line-height: 1.15;
+    }
+
+    body.presentation-player-page .presentation-step-dots {
+        bottom: calc(var(--presentation-control-safe) + 8px);
+        max-width: calc(100vw - 24px);
+        overflow: hidden;
+    }
+
+    body.presentation-player-page .presentation-overview {
+        width: 100vw;
+        max-height: calc(100dvh - var(--presentation-control-safe));
+        grid-template-columns: repeat(auto-fit, minmax(138px, 1fr));
+        padding: 12px;
+        align-self: start;
+    }
+
+    body.presentation-player-page .overview-card {
+        min-height: 88px;
+    }
+}
+
+@media (max-height: 430px) and (orientation: landscape) {
+    body.presentation-player-page .presentation-player {
+        --player-toolbar-height: 62px;
+    }
+
+    body.presentation-player-page .presentation-scene {
+        padding: 10px 14px;
+        gap: 8px;
+    }
+
+    body.presentation-player-page .slide-block h1,
+    body.presentation-player-page .template-title .emphasis-hero h1 {
+        font-size: clamp(24px, 6dvh, 42px);
+    }
+
+    body.presentation-player-page .slide-block h2 {
+        font-size: clamp(19px, 5dvh, 30px);
+    }
+
+    body.presentation-player-page .slide-block p,
+    body.presentation-player-page .slide-block li,
+    body.presentation-player-page .slide-callout {
+        font-size: clamp(12px, 3.4dvh, 17px);
+        line-height: 1.24;
+    }
+
+    body.presentation-player-page .component-canvas,
+    body.presentation-player-page .template-full-screen-simulation .component-canvas,
+    body.presentation-player-page .enhanced-canvas,
+    body.presentation-player-page .template-full-screen-simulation .enhanced-canvas {
+        height: clamp(150px, 48dvh, 260px);
+    }
+
+    body.presentation-player-page .presentation-controls {
+        min-height: 48px;
+    }
+
+    body.presentation-player-page .presentation-control,
+    body.presentation-player-page .presentation-icon,
+    body.presentation-player-page .presentation-show-controls {
+        min-height: 40px;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
